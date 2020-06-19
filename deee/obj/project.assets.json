@@ -449,11 +449,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Eleven 'O N\\source\\repos\\deee\\deee\\deee.csproj",
+      "projectUniqueName": "C:\\Users\\Eleven 'O N\\source\\repos\\EmptyAnts\\deee\\deee.csproj",
       "projectName": "deee",
-      "projectPath": "C:\\Users\\Eleven 'O N\\source\\repos\\deee\\deee\\deee.csproj",
+      "projectPath": "C:\\Users\\Eleven 'O N\\source\\repos\\EmptyAnts\\deee\\deee.csproj",
       "packagesPath": "C:\\Users\\Eleven 'O N\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Eleven 'O N\\source\\repos\\deee\\deee\\obj\\",
+      "outputPath": "C:\\Users\\Eleven 'O N\\source\\repos\\EmptyAnts\\deee\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Eleven 'O N\\AppData\\Roaming\\NuGet\\NuGet.Config",
