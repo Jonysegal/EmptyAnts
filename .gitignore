@@ -32,3 +32,4 @@ _ReSharper*/
 packages/
 *.dll
 *.pdb
+/deee/obj/Debug/netcoreapp3.1/deee.dll

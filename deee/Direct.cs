@@ -90,6 +90,4 @@ public static class Direct
     public static Direction RandomCardinalDirection() => ListHelper.RandomElementInList(CardinalDirectionCircle.list);
 
 
-
-
 }

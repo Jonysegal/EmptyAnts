@@ -11,8 +11,14 @@ public static class AntBrain
 
     public static void MoveAntToGoal(AntMemory ant)
     {
+        /*proposed change
+         * First, find available directions or points
+         * Second, filter out stuff to ignore
+         * Third determine best direction using something better than what we have now (ie just coordinates and stuff rather than distance)
+         */
 
         var bestDirections = PointHelper.BestDirectionFrom(ant.Location, ant.LastDestination);
+
         if (AccessiblePointsFrom(PointHelper.PointsFromDirection(ant.Location, Direct.FullDirectionCircle.list)).Count < 8)
             ant.directionsToIgnore.Add((10, bestDirections[0]));
             

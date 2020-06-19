@@ -29,22 +29,13 @@ public class CirclularList<T>
 
     public T TraverseFromBy(T start, int by)
     {
-        var bySign = (int)Math.Sign(by);
-        if(Math.Abs(by) != 1)
-        {
-            return TraverseFromBy(start, by - bySign);
-        }
-        else
-        {
-            if(bySign == 1)
-            {
-                return ClockwiseNeighborOf(start);
-            }
-            else
-            {
-                return CounterClockwiseNeighborOf(start);
-            }
-        }
+        var startindex = list.IndexOf(start);
+        var goalindex = startindex + by;
+        if (goalindex < 0)
+            return list[list.Count + goalindex];
+        if (goalindex >= list.Count)
+            return list[goalindex - list.Count];
+        return list[goalindex];
     }
 
     bool IsLastElement(T check) => list.IndexOf(check) == list.Count - 1;

@@ -17,24 +17,26 @@ public static class RiverMaker
         //each point also has a slowly increasing chance to modify startDir to one of startDir's neighbors
 
         currentDirection = Direct.RandomFullDirection();
-
+        Console.WriteLine("making river start dir " + currentDirection);
         last = start;
+        maxLengthForRiver = maxLength;
         AddPointToStartFrom(0);
 
 
     }
 
-    static int maxLength = 500;
+    const int maxLength = 500;
+    static int maxLengthForRiver;
     const double changeDirectionModifier = .0005;
     const double chanceToVaryFromDirection = .6;
 
     static void AddPointToStartFrom(double startDirectionChangeChance)
     {
-        maxLength--;
-        if (maxLength <= 0)
+        maxLengthForRiver--;
+        if (maxLengthForRiver <= 0)
             return;
         var chosenDirection = currentDirection;
-        List<Direct.Direction> directionPossibilities = null;
+        List<Direct.Direction> directionPossibilities;
 
         if (MathHelper.RandomChance(chanceToVaryFromDirection))
         {

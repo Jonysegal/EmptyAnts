@@ -104,6 +104,8 @@ public static class PointHelper
    
     public static double DistanceBetweenPoints(Point a, Point b) => Math.Sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 
+    const double halfOfFortyFive = 45 / 2;
+
     public static List<Direct.Direction> BestDirectionFrom(Point a, Point b)
     {
         if (a == b)
@@ -111,24 +113,69 @@ public static class PointHelper
             Console.WriteLine("kill me");
             return null;
 
-        }//iterate through all 8 of the directions
-         //if ever better than last then worse than next, return that as local max
-         //if ever worse on first look, reveres
-
-        List<(double, Direct.Direction)> distancesFromDirections = new List<(double, Direct.Direction)>();
-        foreach (var d in Direct.FullDirectionCircle.list)
-        {
-            int expandBy = 7;
-            if (Direct.CardinalDirectionCircle.list.Contains(d))
-            {
-                expandBy = 10;
-            }
-            distancesFromDirections.Add((DistanceBetweenPoints(PointOffsetBy(a, PointExbandedBy(Direct.DirectionPointMap[d], expandBy)), b), d));
-
-
         }
-        distancesFromDirections.Sort((x, y) => x.Item1.CompareTo(y.Item1));
-        return distancesFromDirections.Select(x => x.Item2).ToList();
+
+        double xDisplacement = b.x - a.x;
+        double yDisplacement = b.y - a.y;
+        double angle = Math.Atan(yDisplacement / xDisplacement);
+        Direct.Direction bestDirection;
+        angle = MathHelper.ConvertRadiansToDegrees(Math.Atan(yDisplacement / xDisplacement));
+        if (xDisplacement < 0 && yDisplacement < 0)
+        {
+            angle = (-90 - angle);
+        }
+        if(xDisplacement >= 0)
+        {
+            if (yDisplacement >= 0)
+            {
+                if (angle < 45 * .5)
+                    bestDirection = Direct.Direction.Right;
+                else if (angle > 45 * 1.5)
+                    bestDirection = Direct.Direction.Up;
+                else
+                    bestDirection = Direct.Direction.UpRight;
+            }
+            else
+            {
+                if (angle > 45 * -.5)
+                    bestDirection = Direct.Direction.Right;
+                else if (angle < 45 * -1.5)
+                    bestDirection = Direct.Direction.Down;
+                else
+                    bestDirection = Direct.Direction.DownRight;
+            }
+        }
+        else
+        {
+            if (yDisplacement >= 0)
+            {
+                if (angle > 45 * -.5)
+                    bestDirection = Direct.Direction.Up;
+                else if (angle < 45 * -1.5)
+                    bestDirection = Direct.Direction.Right;
+                else
+                    bestDirection = Direct.Direction.UpRight;
+            }
+            else
+            {
+                if (angle < 45 * -2.5)
+                    bestDirection = Direct.Direction.DownLeft;
+                else if (xDisplacement < yDisplacement)
+                    bestDirection = Direct.Direction.Left;
+                else
+                    bestDirection = Direct.Direction.Down;
+            }
+        }
+        var toReturn = new List<Direct.Direction>() { bestDirection };
+        var directionIndex = Direct.FullDirectionCircle.list.IndexOf(bestDirection);
+        for(int i=1; i <= 3; i++)
+        {
+            toReturn.Add(Direct.FullDirectionCircle.TraverseFromBy(bestDirection, i));
+            toReturn.Add(Direct.FullDirectionCircle.TraverseFromBy(bestDirection, i * -1));
+        }
+ 
+        return toReturn ;
+
     }
 
     public static List<Point> PointsFromDirection(Point start, List<Direct.Direction> directions) => directions.Select(x => PointInDirection(start, x)).ToList();

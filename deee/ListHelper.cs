@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public static class ListHelper
 {
-    public static T RandomElementInList<T>(List<T> getFrom) => getFrom[RandomHelper.IntInRange(0, getFrom.Count)];
+    public static T RandomElementInList<T>(List<T> getFrom) => getFrom[StaticRandom.Next(0, getFrom.Count)];
 
     public static T FirstElementOf<T>(List<T> getFrom) => getFrom[0];
 
