@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "uj5CWIS9EPBtlZn/srH9CR5/umcK8KyjafUSmXEZv31IVDXB+XVw9FyRKjGId7SuS0iZiwxyaVV8DCQvhFUZBQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Eleven 'O N\\source\\repos\\deee\\deee\\deee.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Eleven 'O N\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\Eleven 'O N\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
+    "C:\\Users\\Eleven 'O N\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
+    "C:\\Users\\Eleven 'O N\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
+    "C:\\Users\\Eleven 'O N\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
+    "C:\\Users\\Eleven 'O N\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
