@@ -1,34 +1,31 @@
-﻿using System.Collections;
+﻿using SFML.Graphics;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 
 public class Tile
 {
-    
-    public enum Type {Water, Ground, Ant, AntHill, AntWithFood, Food};
+    //Bright ground is just for debugging
+    public enum Type {Full, Empty, Signal};
 
     public Type type;
 
-    public static readonly List<Type> InaccessableTypes = new List<Tile.Type>()
-    {
-        Type.Ant,
-        Type.AntWithFood,
-        Type.Food,
-        Type.Water
-    };
+    public bool overridesColor = false;
 
-    public static readonly List<Type> AllTileTypes = new List<Type>()
-    {
-        Type.Water,
-        Type.Ground,
-        Type.Ant,
-        Type.AntHill,
-        Type.AntWithFood,
-        Type.Food
-    };
+    public Color color;
 
-    public static readonly List<Type> AccessableTypes = AllTileTypes.Where(x => !InaccessableTypes.Contains(x)).ToList();
+    public Tile(Type type)
+    {
+        this.type = type;
+    }
+
+    public void OverrideColor(Color newColor)
+    {
+        overridesColor = true;
+        color = newColor;
+    }
+
 
 }
 

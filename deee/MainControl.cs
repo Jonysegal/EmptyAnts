@@ -1,4 +1,6 @@
 ﻿
+using ConnectionsSquare;
+using SFML.Window;
 using System;
 using System.IO.MemoryMappedFiles;
 
@@ -6,10 +8,8 @@ namespace deee
 {
     class MainControl
     {
-       
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Worldff!");
             Initialize();
             RunLoop();
             
@@ -17,14 +17,20 @@ namespace deee
 
         static void Initialize()
         {
-            WorldController.Initialize();
         }
 
         static void RunLoop()
         {
             while (true)
             {
-                WorldController.Loop();
+                KeyboardManager.Loop();
+                Config.Loop();
+                CameraControl.Loop();
+
+                FullMap.StartLoop();
+                BeingControl.Loop();
+                FullMap.EndLoop();
+
                 Drawer.Loop();
             }
         }

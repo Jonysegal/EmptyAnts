@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Numerics;
 using System.Text;
+using ConnectionsSquare;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 namespace deee
 {
@@ -19,21 +23,19 @@ namespace deee
         static Image image;
         static Sprite sprite;
         const int WindowSize = 1000;
-        const int Offset = WindowSize / 2;
+        public static View view = new View(new Vector2f(200, 200), new Vector2f(400, 400));
 
-        public static Dictionary<Tile.Type, Color> typeColorMap = new Dictionary<Tile.Type, Color>()
-    {
-        {Tile.Type.Water, Color.Blue },
-        {Tile.Type.Ground, new Color(16, 48, 0) },
-        {Tile.Type.Food, Color.Green },
-        {Tile.Type.AntHill, Color.Magenta },
-        {Tile.Type.Ant, Color.Red },
-        {Tile.Type.AntWithFood, Color.Green },
-    };
+        static readonly Dictionary<Tile.Type, Color> TypeColorMap = new Dictionary<Tile.Type, Color>()
+        {
+            {Tile.Type.Empty, ColorHelper.makeColor(75, 156, 211)},
+            {Tile.Type.Full, Color.White },
+            {Tile.Type.Signal, Color.Red }
+        };
 
         static Drawer()
         {
             window = new RenderWindow(new VideoMode(WindowSize, WindowSize), "Window");
+            window.SetView(view);
             texture = new Texture(WindowSize, WindowSize);
             image = new Image(WindowSize, WindowSize);
             sprite = new Sprite(texture);
@@ -42,42 +44,34 @@ namespace deee
 
         static void InitializeImage()
         {
-            for(uint i=0; i < WindowSize; i++)
+            Clear();
+        }
+
+        static void Clear()
+        {
+            for (uint i = 0; i < WindowSize; i++)
             {
-                for(uint j = 0; j < WindowSize; j++)
+                for (uint j = 0; j < WindowSize; j++)
                 {
-                   image.SetPixel(i, j, Color.White);
+                    image.SetPixel(i, j, TypeColorMap[Tile.Type.Empty]);
                 }
             }
         }
 
-        static void UpdateImageForModifiedTiles()
+        static void SetPixelsFromDrawController()
         {
-            foreach (var modifiedPoint in Map.ModifiedPoints)
+            foreach(var v in FullMap.modifiedPoints)
             {
-                AddTypeToColorsAt(Map.map[modifiedPoint], DrawingTranslatedPoint(modifiedPoint));
-            }
-            Map.ModifiedPoints.Clear();
-        }
-
-        static Point DrawingTranslatedPoint(Point translate)
-        {
-            return new Point(translate.x + Offset, translate.y + Offset);
-        }
-
-        static void AddTypeToColorsAt(Tile.Type toAdd, Point addAt)
-        {
-            addAt.y = WindowSize - addAt.y;
-            if(PointValidForColorPlacement(addAt))
-                image.SetPixel((uint)addAt.x, (uint)addAt.y, typeColorMap[toAdd]);
-            else
-            {
-                Console.WriteLine("attempted color place at invalid spot " + addAt.ToString());
-                Console.ReadKey(true);
+                image.SetPixel((uint)v.point.x, (uint)v.point.y, TypeColorMap[v.type]);
             }
         }
 
-        static bool PointValidForColorPlacement(Point check) => check.y < 1000 && check.x < 1000;
+
+        public static void Loop()
+        {
+            SetPixelsFromDrawController();
+            Draw();
+        }
 
         static void Draw()
         {
@@ -86,10 +80,10 @@ namespace deee
             window.Display();
         }
 
-        public static void Loop()
-        {
-            UpdateImageForModifiedTiles();
-            Draw();
-        }
+        public static void UpdateView() => window.SetView(view);
+
+       
+
+      
     }
 }

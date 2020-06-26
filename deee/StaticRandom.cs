@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFML.Graphics;
+using System;
 using System.Threading;
 
 
@@ -51,4 +52,7 @@ public static class StaticRandom
     public static int Next(int minValue, int maxValue) => _random.Value.Next(minValue, maxValue);
 
     public static double NextDouble() => _random.Value.NextDouble();
+
+    public static Color randomColor() => new Color((byte)StaticRandom.Next(0, 255), (byte)StaticRandom.Next(0, 255), (byte)StaticRandom.Next(0, 255));
+
 }
