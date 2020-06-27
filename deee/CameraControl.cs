@@ -10,9 +10,9 @@ namespace ConnectionsSquare
 {
     public static class CameraControl
     {
-        const float MoveVal = .25f;
+        const float MoveVal = .9f;
 
-        const float ZoomVal = .001f;
+        const float ZoomVal = .005f;
 
         static void MoveDown() => Drawer.view.Move(new Vector2f(0, MoveVal));
         static void MoveRight() => Drawer.view.Move(new Vector2f(MoveVal, 0));

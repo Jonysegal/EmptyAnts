@@ -9,7 +9,7 @@ namespace ConnectionsSquare
         public static Being CombineBeings(Being a, Being b)
         {
             Being toReturn = new Being();
-            foreach(var p in Being.pointsInBeingMap)
+            foreach(var p in PointCollection.ListOfPointsWithSize(Being.SquareWidth))
             {
                 if (a.map.TypeOf(p) != b.map.TypeOf(p))
                     toReturn.map.AddOccupiedAt(p);

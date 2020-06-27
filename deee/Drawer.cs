@@ -23,7 +23,7 @@ namespace deee
         static Image image;
         static Sprite sprite;
         const int WindowSize = 1000;
-        public static View view = new View(new Vector2f(200, 200), new Vector2f(400, 400));
+        public static View view = new View(new Vector2f(300, 700), new Vector2f(400, 400));
 
         static readonly Dictionary<Tile.Type, Color> TypeColorMap = new Dictionary<Tile.Type, Color>()
         {
@@ -62,7 +62,7 @@ namespace deee
         {
             foreach(var v in FullMap.modifiedPoints)
             {
-                image.SetPixel((uint)v.point.x, (uint)v.point.y, TypeColorMap[v.type]);
+                image.SetPixel((uint)v.point.x, WindowSize- (uint)v.point.y, TypeColorMap[v.type]);
             }
         }
 

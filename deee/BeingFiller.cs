@@ -42,7 +42,6 @@ namespace ConnectionsSquare
             }
 
             toFill.map.Complete();
-            toFill.map.Print();
         }
     }
 }

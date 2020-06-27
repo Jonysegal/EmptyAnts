@@ -7,7 +7,7 @@ namespace ConnectionsSquare
 {
     public static class Config
     {
-        public static bool DrawOutlines = false;
+        public static bool DrawOutlines = true;
         public static void Loop()
         {
             CheckConfigKeyChanges();

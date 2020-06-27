@@ -16,7 +16,7 @@ namespace ConnectionsSquare
     {
         Dictionary<int, Dictionary<int, Tile.Type>> map = new Dictionary<int, Dictionary<int, Tile.Type>>();
 
-        int size;
+        public int size;
 
         public List<PointTyle> pointTyles = null;
 
@@ -41,6 +41,8 @@ namespace ConnectionsSquare
             else
                 return Tile.Type.Empty;
         }
+
+        public bool PointsAreSameType(Point a, Point b) => TypeOf(a) == TypeOf(b);
 
         void AddTileTypeAt(Point addAt, Tile.Type add)
         {
@@ -85,16 +87,16 @@ namespace ConnectionsSquare
         public void Print()
         {
             Console.WriteLine("");
-            for(int i=0; i < size; i++)
+            for(int i = size - 1; i >= 0; i--)
             {
                 for(int j = 0; j < size; j++)
                 {
-                    if (ContainsPoint(new Point(i, j)))
+                    if (ContainsPoint(new Point(j, i)))
                         Console.Write("1 ");
                     else
                         Console.Write("0 ");
                 }
-                Console.Write("\n");
+                Console.WriteLine("");
             }
         }
 
