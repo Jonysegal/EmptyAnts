@@ -35,3 +35,5 @@ packages/
 /deee/obj/Debug/netcoreapp3.1/deee.dll
 *.suo
 *.json
+/.vs/deee/v16/.suo
+/deee/obj/project.assets.json
