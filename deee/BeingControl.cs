@@ -14,23 +14,6 @@ namespace ConnectionsSquare
         {
             CreateInitialBeings();
             CreateChildrenOfInitialBeings();
-            foreach(var bo in beingsAndOutlines)
-            {
-                if (MapAnalyzer.MapIsHorizontallySymetrical(bo.being.map))
-                {
-                    Console.WriteLine("below is horiz symet");
-                    bo.being.map.Print();
-                }
-                if (MapAnalyzer.MapIsVerticallySymetrical(bo.being.map))
-                {
-                    Console.WriteLine("below is vert symet");
-                    bo.being.map.Print();
-                }
-                if(beingsAndOutlines.IndexOf(bo) < 5)
-                {
-                    bo.being.map.Print();
-                }
-            }
         }
         public static void Loop()
         {
