@@ -23,7 +23,18 @@ namespace ConnectionsSquare.Families
             if (!MathHelper.IsEven(width) || width < 5)
                 Console.WriteLine("Tried to do create an incorrect width square family " + width);
             BeingMap = new GenericLocalMap<Being>();
+
             return null;
+        }
+
+        static void StartFamily()
+        {
+            Being firstBeing = BeingFiller.NewFilledBeing();
+            BeingMap.AddAt(firstBeing, PointHelper.ZeroPoint);
+            foreach(var point in PointHelper.PointsInDiagonalDirections(PointHelper.ZeroPoint))
+            {
+                BeingMap.AddAt(BeingFiller.NewFilledBeing(), point);
+            }
         }
     }
 
