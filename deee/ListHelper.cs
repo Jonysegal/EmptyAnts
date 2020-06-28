@@ -33,4 +33,17 @@ public static class ListHelper
         removeFor.RemoveAt(removeFor.Count - 1);
         removeFor.RemoveAt(0);
     }
+
+    public static double MidPointOf<T>(List<T> getFor) => (double)getFor.Count / 2;
+
+    public static int MidIndexOf<T>(List<T> getFor) => getFor.Count / 2;
+
+    public static void MoveMiddleItemToEnd<T>(List<T> movingFor)
+    {
+        var index = MidIndexOf(movingFor);
+        var moving = movingFor[index];
+        movingFor.RemoveAt(index);
+        movingFor.Add(moving);
+    }
+
 }
