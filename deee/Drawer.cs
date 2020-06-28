@@ -7,7 +7,7 @@ using ConnectionsSquare;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-namespace deee
+namespace ConnectionsSquare
 {
     public static class Drawer
     {

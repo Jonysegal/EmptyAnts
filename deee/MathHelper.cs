@@ -16,4 +16,6 @@ public static class MathHelper
     public static bool NumberInRange(double test, double min, double max) => test >= min && test <= max;
 
     public static bool NumberNearNumberPlusMinus(double test, double midPoint, double margin) => NumberInRange(test, midPoint - margin, midPoint + margin);
+
+    public static bool IsEven(int check) => check % 2 == 0;
 }

@@ -6,7 +6,7 @@ namespace ConnectionsSquare
 {
     public class GenericLocalMap<T>
     {
-        Dictionary<int, Dictionary<int, T>> map = new Dictionary<int, Dictionary<int, T>>();
+        public Dictionary<int, Dictionary<int, T>> map = new Dictionary<int, Dictionary<int, T>>();
 
         public T ValueAt(Point at)
         {
@@ -34,5 +34,7 @@ namespace ConnectionsSquare
             map[x] = new Dictionary<int, T>();
             return map[x];
         }
+
+        public void Reset() => map.Clear();
     }
 }

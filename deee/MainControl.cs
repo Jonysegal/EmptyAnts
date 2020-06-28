@@ -4,7 +4,7 @@ using SFML.Window;
 using System;
 using System.IO.MemoryMappedFiles;
 
-namespace deee
+namespace Connectionssquare
 {
     class MainControl
     {
@@ -17,6 +17,7 @@ namespace deee
 
         static void Initialize()
         {
+            FamilyManager.GenerateFamilies();
         }
 
         static void RunLoop()
@@ -28,7 +29,8 @@ namespace deee
                 CameraControl.Loop();
 
                 FullMap.StartLoop();
-                BeingControl.Loop();
+                AllBeings.Loop();
+
                 FullMap.EndLoop();
 
                 Drawer.Loop();

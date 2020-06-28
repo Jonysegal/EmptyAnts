@@ -20,6 +20,7 @@ namespace ConnectionsSquare
 
         public List<PointTyle> pointTyles = null;
 
+        public Point position;
 
         public LocalMap(int size)
         {
