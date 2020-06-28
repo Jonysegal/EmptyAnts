@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ConnectionsSquare
@@ -26,7 +27,7 @@ namespace ConnectionsSquare
                 Console.WriteLine("Tried to do create an incorrect width square family " + width);
             familyWidth = width;
             BeingMap = new GenericLocalMap<Being>();
-            StartFamily(); 
+            StartFamily();
             return BeingMap;
         }
 
@@ -62,6 +63,63 @@ namespace ConnectionsSquare
             
         }
 
+   
+
+        static void FillBetween(Point a, Point b)
+        {
+            var collectedPoints = PointHelper.PointsInRegionBetween(a, b);
+            ListHelper.RemoveEndsOf(collectedPoints);
+            var directionToCenter = CorrectDirectionToCenterFromPoints(a, b);
+            collectedPoints = SortListForProperCreation(collectedPoints, directionToCenter);
+            foreach (Point point in collectedPoints)
+            {
+                var parentTowardsCenter = PointHelper.PointInDirection(point, directionToCenter);
+                var parentBehind = PointHelper.PointInDirection(point, BackwardsDirectionWithDirectionToCenter(point, directionToCenter));
+                BeingMap.AddAt(BeingCombiner.CombineBeings(BeingMap.ValueAt(parentTowardsCenter), BeingMap.ValueAt(parentBehind)), point);
+            }
+        }
+
+        static List<Point> SortListForProperCreation(List<Point> toSort, Direct.Direction directionToCenter)
+        {
+            if (Direct.DirectionIsVertical(directionToCenter))
+                return toSort.OrderByDescending(x => Math.Abs(x.x)).ToList();
+            else
+                return toSort.OrderByDescending(x => Math.Abs(x.y)).ToList();
+        }
+
+        static Direct.Direction BackwardsDirectionWithDirectionToCenter(Point from, Direct.Direction toCenter)
+        {
+            if (Direct.DirectionIsVertical(toCenter))
+            {
+                if (from.x < 0)
+                    return Direct.Direction.Left;
+                else if (from.x > 0)
+                    return Direct.Direction.Right;
+                else
+                    return ListHelper.RandomElementInList(Direct.HorizontalDirections);
+            }
+            else
+            {
+                if (from.y < 0)
+                    return Direct.Direction.Down;
+                else if (from.y > 0)
+                    return Direct.Direction.Up;
+                else
+                    return ListHelper.RandomElementInList(Direct.VerticalDirections);
+            }
+        }
+
+        static Direct.Direction CorrectDirectionToCenterFromPoints(Point a, Point b)
+        {
+            if (a.y > 0 && b.y > 0)
+                return Direct.Direction.Down;
+            else if (a.y < 0 && b.y < 0)
+                return Direct.Direction.Up;
+            if (a.x > 0 && b.x > 0)
+                return Direct.Direction.Left;
+            else
+                return Direct.Direction.Right;
+        }
     }
 
 }
