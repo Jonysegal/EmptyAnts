@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConnectionsSquare.Families
+namespace ConnectionsSquare
 {
     public static class TileSquareFamilyCreator
     {
@@ -23,8 +23,8 @@ namespace ConnectionsSquare.Families
             if (!MathHelper.IsEven(width) || width < 5)
                 Console.WriteLine("Tried to do create an incorrect width square family " + width);
             BeingMap = new GenericLocalMap<Being>();
-
-            return null;
+            StartFamily(); 
+            return BeingMap;
         }
 
         static void StartFamily()

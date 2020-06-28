@@ -10,13 +10,13 @@ namespace ConnectionsSquare
 
         public static void GenerateFamilies()
         {
-            families.Add(PyramidFamilyCreator.GenerateFamily(5));
+            families.Add(TileSquareFamilyCreator.GenerateFamily(5));
             PositionFamiles();
             AddBeingsToManager();
         }
 
         //Obvi if we ever have multiple families we'll need to position better
-        public static void PositionFamiles() => families.ForEach(x => FamilyPositioner.PositionFamily(x, new Point(100, 100), 3));
+        public static void PositionFamiles() => families.ForEach(x => FamilyPositioner.PositionFamily(x, new Point(400, 400), 0));
 
         static void AddBeingsToManager()
         {
