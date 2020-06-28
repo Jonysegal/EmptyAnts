@@ -6,6 +6,8 @@ namespace ConnectionsSquare
 {
     public static class PointHelper
     {
+        public static readonly Point ZeroPoint = new Point(0, 0);
+
         public static Point PointOffsetBy(Point p, Point offset) => new Point(p.x + offset.x, p.y + offset.y);
 
         public static PointTyle PointTyleOffsetBy(PointTyle p, Point offset) => new PointTyle(PointOffsetBy(p.point, offset), p.type);
@@ -29,15 +31,11 @@ namespace ConnectionsSquare
             }
             return toReturn;
         }
-        public static List<Point> PointsFromDirection(Point start, List<Direct.Direction> directions) => directions.Select(x => PointInDirection(start, x)).ToList();
+        public static List<Point> PointsInDirections(Point start, List<Direct.Direction> directions) => directions.Select(x => PointInDirection(start, x)).ToList();
 
-        public static List<Point> PointsFromCardinalDirections(Point start) => new List<Point>()
-        {
-            PointInDirection(start, Direct.Direction.Up),
-            PointInDirection(start, Direct.Direction.Right),
-            PointInDirection(start, Direct.Direction.Down),
-            PointInDirection(start, Direct.Direction.Left)
-        };
+        public static List<Point> PointsInCardinalDirections(Point start) => PointsInDirections(start, Direct.CardinalDirections);
+
+        public static List<Point> PointsInDiagonalDirections(Point start) => PointsInDirections(start, Direct.DiagonalDirections);
 
         public static Point MidpointOf(Point a, Point b) => new Point((a.x + b.x) / 2, (a.y + b.y) / 2);
 
