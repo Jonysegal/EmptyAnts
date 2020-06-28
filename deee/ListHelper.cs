@@ -27,4 +27,10 @@ public static class ListHelper
         addTo.Clear();
         addTo.AddRange(add);
     }
+
+    public static void RemoveEndsOf<T>(List<T> removeFor)
+    {
+        removeFor.RemoveAt(removeFor.Count - 1);
+        removeFor.RemoveAt(0);
+    }
 }

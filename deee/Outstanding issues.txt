@@ -1,3 +1,8 @@
 ﻿Simplfiy outlining stuff/ clarify it.
 Will families need to be movable? 
 What is the primative here? Families, beings, local maps? I like how local maps are what get positioned and drawn. but what all can be moved? can a family become a local map?
+
+
+
+Idea: maybe once stuff is generated there are interesting ways to reorder it? looking like the corners are fairly similar which makes sense, they're only different at one spot. that could also be cool to look at
+so maybe group them n together somehow?
