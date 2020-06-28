@@ -9,7 +9,9 @@ namespace ConnectionsSquare
     {
         const int maxAdditions = 20;
 
-        public static void FillBeing(Being toFill)
+        public static Being NewFilledBeing() => FillBeing(new Being());
+
+        public static Being FillBeing(Being toFill)
         {
             var start = new Point(StaticRandom.Next(0, Being.SquareWidth), StaticRandom.Next(0, Being.SquareWidth));
             var proceduralList = new List<Point>() { start };
@@ -22,7 +24,7 @@ namespace ConnectionsSquare
                 {
                     if (!toFill.map.ContainsPoint(p))
                     {
-                        possibleAdditions.AddRange(PointHelper.PointsFromCardinalDirections(p));
+                        possibleAdditions.AddRange(PointHelper.PointsInCardinalDirections(p));
                         toFill.map.AddOccupiedAt(p);
                         totalAdded++;
                     }
@@ -42,6 +44,7 @@ namespace ConnectionsSquare
             }
 
             toFill.map.Complete();
+            return toFill;
         }
     }
 }
