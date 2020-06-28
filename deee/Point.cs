@@ -65,12 +65,19 @@ namespace ConnectionsSquare
 
         public static Point MidpointOf(Point a, Point b) => new Point((a.x + b.x) / 2, (a.y + b.y) / 2);
 
-        //Goes from a.x => b.x then down in the y from a.y => b.y
-        //Eg a = (-1, 1) b = (1, -1) would go (-1, 1), (0, 1), (1, 1), (-1, 0), (0, 0), etc
-        //public static List<Point> PointsInRegionBetween(point a, point b)
-        //{
-
-        //}
+        //Goes from lower left of the definied rectangle to upper right of the defined rectangle
+        //Eg a = (-1, 1) b = (1, -1) would go (-1, -1), (0, -1), (1, -1), (-1, 0), (0, 0), (1, 0), (-1, 1), (0, 1), (1, 1)
+        public static List<Point> PointsInRegionBetween(Point a, Point b)
+        {
+            var toReturn = new List<Point>();
+            for(int yPos = Math.Min(a.y, b.y); yPos <= Math.Max(a.y, b.y); yPos++) {
+                for (int xPos = Math.Min(a.x, b.x); xPos <= Math.Max(a.x, b.x); xPos++)
+                {
+                    toReturn.Add(new Point(xPos, yPos));
+                }
+            }
+            return toReturn;
+        }
 
     }
 
