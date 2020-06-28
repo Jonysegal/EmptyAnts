@@ -70,6 +70,21 @@ namespace ConnectionsSquare
             Direction.DownLeft,
             Direction.UpLeft
         };
+
+        public static readonly List<Direction> VerticalDirections = new List<Direction>()
+        {
+            Direction.Up,
+            Direction.Down
+        };
+        public static readonly List<Direction> HorizontalDirections = new List<Direction>()
+        {
+            Direction.Left,
+            Direction.Right
+        };
+
+        public static bool DirectionIsVertical(Direction toCheck) => toCheck == Direction.Up || toCheck == Direction.Down;
+
+        public static bool DirectionIsHorizontal(Direction toCheck) => toCheck == Direction.Left || toCheck == Direction.Right;
     }
 
 }
