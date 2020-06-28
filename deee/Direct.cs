@@ -43,8 +43,33 @@ namespace ConnectionsSquare
             DownLeft
         };
 
+        public static readonly List<Direction> AllDirections = new List<Direction>()
+        {
+            Direction.Up,
+            Direction.UpRight,
+            Direction.Right,
+            Direction.DownRight,
+            Direction.Down,
+            Direction.DownLeft,
+            Direction.Left,
+            Direction.UpLeft
+        };
 
+        public static readonly List<Direction> CardinalDirections = new List<Direction>()
+        {
+            Direction.Up,
+            Direction.Right,
+            Direction.Down,
+            Direction.Left
+        };
 
+        public static readonly List<Direction> DiagonalDirections = new List<Direction>()
+        {
+            Direction.UpRight,
+            Direction.DownRight,
+            Direction.DownLeft,
+            Direction.UpLeft
+        };
     }
 
 }
