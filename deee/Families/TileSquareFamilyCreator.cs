@@ -28,6 +28,7 @@ namespace ConnectionsSquare
             familyWidth = width;
             BeingMap = new GenericLocalMap<Being>();
             StartFamily();
+            FillBetweenAllCorners();
             return BeingMap;
         }
 
@@ -63,9 +64,34 @@ namespace ConnectionsSquare
             
         }
 
-   
+        static void FillBetweenAllCorners()
+        {
+            List<Point> corners = new List<Point>()
+            {
+                new Point(0, 0), //upright
+                new Point(0, 0), //downright
+                new Point(0, 0), //downleft
+                new Point(0, 0) //upleft
+            };
+            int counter = 0;
+            while(counter * 2 < familyWidth)
+            {
+                for(int i =0; i < corners.Count; i++)
+                {
+                    corners[i] = PointHelper.PointInDirection(corners[i], Direct.DiagonalDirections[i]);
+                }
+                for(int i=0; i < corners.Count; i++)
+                {
+                    var a = corners[i];
+                    var b = i == corners.Count - 1 ? corners[0] : corners[i + 1];
+                    FillBetweenCorners(a, b);
+                }
+                counter++;
+            }
+        }
 
-        static void FillBetween(Point a, Point b)
+
+        static void FillBetweenCorners(Point a, Point b)
         {
             var collectedPoints = PointHelper.PointsInRegionBetween(a, b);
             ListHelper.RemoveEndsOf(collectedPoints);
